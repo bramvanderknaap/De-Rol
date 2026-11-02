@@ -118,7 +118,22 @@ export default function Stukken() {
     <div className="stukken">
       <section className="intro">
         <h1>Stukken controleren</h1>
+        <p className="bovenregel">Procesreglement handelszaken, art. 2.13 en 2.14</p>
         <p className="lead">Sleep een processtuk en de producties hierheen. Je ziet per bestand of het voldoet aan het procesreglement en de eisen van Mijn Rechtspraak.</p>
+        <ul className="kenmerken" aria-label="Kenmerken">
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2" /><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" /></svg>
+            Blijft op je computer
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="m8 12.2 2.7 2.7L16.2 9.4" /></svg>
+            Bron bij elke controle
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5.5c0 4.3 2.9 8 7 9.5 4.1-1.5 7-5.2 7-9.5V6l-7-3Z" /></svg>
+            Geen account nodig
+          </li>
+        </ul>
       </section>
 
       <div

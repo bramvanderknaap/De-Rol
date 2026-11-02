@@ -72,10 +72,13 @@ export default function App() {
               <rect x="16" y="5.5" width="3.5" height="5" rx="1" />
               <rect x="16" y="12" width="3.5" height="5" rx="1" />
             </svg>
-            De Rol
+            <span className="merk-tekst">
+              <span className="merk-naam">De Rol</span>
+              <span className="merk-sub">Stukken en termijnen voor de rol</span>
+            </span>
           </a>
           <nav className="schakelaar" aria-label="Onderdelen">
-            <button aria-current={tab === 'stukken' ? 'page' : undefined} onClick={() => kies('stukken')}>Stukken controleren</button>
+            <button aria-current={tab === 'stukken' ? 'page' : undefined} onClick={() => kies('stukken')}>Stukken<span className="breed"> controleren</span></button>
             <button aria-current={tab === 'termijnen' ? 'page' : undefined} onClick={() => kies('termijnen')}>Termijnen</button>
           </nav>
           <ThemaKnop />
