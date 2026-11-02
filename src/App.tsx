@@ -44,6 +44,32 @@ function LegalPaceLogo() {
   )
 }
 
+type InstallEvent = Event & { prompt: () => Promise<void>; userChoice: Promise<{ outcome: string }> }
+
+// Knop om De Rol als app te installeren. Alleen zichtbaar als de browser dat aanbiedt (Chrome, Edge).
+function Installeer() {
+  const [aanbod, setAanbod] = useState<InstallEvent | null>(null)
+  useEffect(() => {
+    const opAanbod = (e: Event) => { e.preventDefault(); setAanbod(e as InstallEvent) }
+    const opGeinstalleerd = () => setAanbod(null)
+    window.addEventListener('beforeinstallprompt', opAanbod)
+    window.addEventListener('appinstalled', opGeinstalleerd)
+    return () => { window.removeEventListener('beforeinstallprompt', opAanbod); window.removeEventListener('appinstalled', opGeinstalleerd) }
+  }, [])
+  if (!aanbod) return null
+  async function installeer() {
+    await aanbod!.prompt()
+    await aanbod!.userChoice
+    setAanbod(null)
+  }
+  return (
+    <div className="installeer">
+      <p>Installeer De Rol als app. Na één keer openen werkt hij ook zonder internet.</p>
+      <button className="knop stil" onClick={installeer}>Installeer als app</button>
+    </div>
+  )
+}
+
 function leesTab(): Tab {
   return location.hash === '#termijnen' ? 'termijnen' : 'stukken'
 }
@@ -88,6 +114,7 @@ export default function App() {
       <main className="inhoud">{tab === 'stukken' ? <Stukken /> : <Termijnen />}</main>
 
       <footer className="voet">
+        <Installeer />
         <p className="maker">
           <span>Een product van</span>
           <a href="https://legal-pace.com" className="legal-pace"><LegalPaceLogo />Legal Pace</a>
