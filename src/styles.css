@@ -124,9 +124,7 @@ h1, h2, p { margin: 0; }
 .merk-tekst { display: grid; gap: 0.2rem; }
 .merk-naam { font: 400 1.45rem/1 var(--serif); letter-spacing: 0.005em; white-space: nowrap; }
 .merk-sub { font: 400 0.68rem/1 var(--serif); color: var(--inkt-2); letter-spacing: 0.01em; }
-.merk-teken { width: 1.6rem; height: 1.6rem; }
-.merk-teken rect:first-child { fill: none; stroke: var(--inkt); stroke-width: 1.5; }
-.merk-teken rect:not(:first-child) { fill: var(--inkt); }
+.merk-teken { width: 2rem; height: 2rem; fill: none; stroke: var(--inkt); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; }
 
 .schakelaar { display: inline-flex; gap: 1.75rem; }
 
