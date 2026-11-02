@@ -304,3 +304,24 @@ function paginaLijst(ps: number[]): string {
   return `${ps.length} pagina's, vanaf pagina ${ps[0]}`
 }
 
+
+// Volledige tekst van alle pagina's, voor de controle van een dagvaarding.
+export async function leesTekst(bestand: File): Promise<{ paginas: string[]; fout?: string }> {
+  let doc: pdfjs.PDFDocumentProxy
+  try {
+    doc = await pdfjs.getDocument({ data: new Uint8Array(await bestand.arrayBuffer()) }).promise
+  } catch (e) {
+    const naam = (e as { name?: string }).name
+    return { paginas: [], fout: naam === 'PasswordException' ? 'Het bestand is met een wachtwoord beveiligd. Haal het wachtwoord eraf en probeer opnieuw.' : 'Het bestand kan niet worden geopend. Het lijkt beschadigd of is geen echte pdf.' }
+  }
+  const paginas: string[] = []
+  for (let p = 1; p <= doc.numPages; p++) {
+    const pagina = await doc.getPage(p)
+    const inhoud = await pagina.getTextContent()
+    paginas.push(inhoud.items.map((i) => ('str' in i ? i.str + (i.hasEOL ? '\n' : '') : '')).join(''))
+    pagina.cleanup()
+  }
+  await doc.destroy()
+  if (!paginas.join('').trim()) return { paginas, fout: 'Er staat geen leesbare tekst in dit bestand. Is het een scan? Maak er eerst een doorzoekbare pdf van.' }
+  return { paginas }
+}
