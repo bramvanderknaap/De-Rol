@@ -17,6 +17,7 @@ export default function Termijnen() {
     <div className="termijnen">
       <section className="intro">
         <h1>Termijnen</h1>
+        <p className="bovenregel">Procesreglement handelszaken en Algemene termijnenwet</p>
         <p className="lead">Kies een proceshandeling en vul de datum in. Je ziet de uiterste datum met het artikel waarop die rust.</p>
       </section>
 
