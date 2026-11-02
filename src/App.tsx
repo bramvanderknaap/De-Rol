@@ -93,10 +93,12 @@ export default function App() {
       <header className="kop">
         <div className="kop-binnen">
           <a className="merk" href="#" onClick={(e) => { e.preventDefault(); kies('stukken') }}>
-            <svg viewBox="0 0 24 24" aria-hidden="true" className="merk-teken">
-              <rect x="4" y="2.5" width="12" height="19" rx="1.5" />
-              <rect x="16" y="5.5" width="3.5" height="5" rx="1" />
-              <rect x="16" y="12" width="3.5" height="5" rx="1" />
+            {/* Beeldmerk: een bef met de kraag van de toga. */}
+            <svg viewBox="0 0 32 32" aria-hidden="true" className="merk-teken">
+              <path d="M13.4 8.6h5.2l-.7 2.6h-3.8Z" />
+              <path d="M15.2 11.2h-2.6l-1.5 16.3h3.6Z" />
+              <path d="M16.8 11.2h2.6l1.5 16.3h-3.6Z" />
+              <path d="M9 5.5c1.6 1.8 3.2 3 4.4 3.1M23 5.5c-1.6 1.8-3.2 3-4.4 3.1" />
             </svg>
             <span className="merk-tekst">
               <span className="merk-naam">De Rol</span>
