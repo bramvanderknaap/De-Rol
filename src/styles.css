@@ -462,6 +462,57 @@ select, input[type='date'] {
 }
 .legal-pace:hover { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 
+
+/* ---------- Dagvaarding ---------- */
+.vragen {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4rem 2rem;
+  background: var(--vlak);
+  border: 1px solid var(--lijn);
+  border-radius: 2px;
+  padding: 1.6rem 1.75rem;
+  margin-bottom: 1.25rem;
+}
+.keuze { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 0.45rem; align-content: start; }
+.keuze legend, .keuze .legend { padding: 0; font-size: 0.92rem; color: var(--inkt-2); margin-bottom: 0.45rem; display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+.keuze .legend { margin-bottom: 0; }
+.breed-veld { grid-column: 1 / -1; }
+.breed-veld select { width: 100%; min-width: 0; text-overflow: ellipsis; }
+.herkend { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ok); }
+.segment { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--lijn-sterk); border-radius: 2px; width: fit-content; max-width: 100%; }
+.segment label { position: relative; padding: 0.6rem 1rem; font-size: 0.95rem; cursor: pointer; color: var(--inkt-2); min-height: 2.75rem; display: inline-flex; align-items: center; }
+.segment label + label { border-left: 1px solid var(--lijn-sterk); }
+.segment label:hover { background: var(--griffie-zacht); color: var(--inkt); }
+.segment label.aan { background: var(--griffie); color: var(--knop-tekst); }
+.segment input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.segment label:has(input:focus-visible) { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.termijn-vak {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: 1.5rem 2rem;
+  background: var(--vlak);
+  border: 1px solid var(--lijn);
+  border-radius: 2px;
+  padding: 1.4rem 1.6rem;
+}
+.datums { display: grid; gap: 1rem; align-content: start; }
+.termijn-vak .eisen { border: 0; background: none; }
+.termijn-vak .eis { padding-left: 0; padding-right: 0; }
+.termijn-vak .eis:first-child { padding-top: 0; }
+
+.eisen { list-style: none; margin: 0; padding: 0; background: var(--vlak); border: 1px solid var(--lijn); border-radius: 2px; }
+.eis { display: grid; grid-template-columns: 7.25rem minmax(0, 1fr); gap: 1rem; padding: 1rem 1.1rem; align-items: start; }
+.eis + .eis { border-top: 1px solid var(--lijn-zacht); }
+.eis .label { grid-row: 1; grid-column: 1; justify-self: start; margin-top: 0.1rem; }
+.eis.fout .b-titel { color: var(--fout); }
+.vindplaats { margin: 0.55rem 0 0; padding: 0.1rem 0 0.1rem 0.85rem; border-left: 1px solid var(--lijn-sterk); color: var(--inkt-2); font-size: 0.92rem; max-width: 46rem; }
+.vind-pagina { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--inkt-3); margin-right: 0.55rem; white-space: nowrap; }
+.melding.fout { color: var(--fout); background: var(--fout-zacht); }
+.dagvaarding .uitleg { margin-top: 3rem; }
+.dagvaarding .uitleg .bovenregel { margin-bottom: 0.6rem; }
+
 @media (max-width: 760px) {
   .kop-binnen { padding: 0.6rem 1rem; }
   .schakelaar { gap: 1rem; }
@@ -476,14 +527,18 @@ select, input[type='date'] {
   .termijn-raster { grid-template-columns: 1fr; gap: 1.25rem; }
   .berekening { padding: 1.25rem; }
   .uitleg dl div { grid-template-columns: 1fr; gap: 0.15rem; }
+  .vragen { grid-template-columns: minmax(0, 1fr); padding: 1.25rem; gap: 1.2rem; }
+  .termijn-vak { grid-template-columns: 1fr; padding: 1.25rem; }
+  .eis { grid-template-columns: 1fr; gap: 0.4rem; }
+  .eis .label { grid-row: auto; grid-column: 1; }
 }
 
 @media (max-width: 420px) {
   .merk { font-size: 1.15rem; }
   .merk-teken { display: none; }
   .kop-binnen { gap: 0.75rem; }
-  .schakelaar { gap: 0.75rem; }
-  .schakelaar button { font-size: 0.78rem; letter-spacing: 0.06em; }
+  .schakelaar { gap: 0.6rem; }
+  .schakelaar button { font-size: 0.72rem; letter-spacing: 0.04em; }
   .breed { display: none; }
 }
 

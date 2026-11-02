@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import Stukken from './components/Stukken'
 import Termijnen from './components/Termijnen'
+import Dagvaarding from './components/Dagvaarding'
 
-type Tab = 'stukken' | 'termijnen'
+type Tab = 'stukken' | 'dagvaarding' | 'termijnen'
 type Thema = 'licht' | 'donker'
 
 function huidigThema(): Thema {
@@ -71,7 +72,9 @@ function Installeer() {
 }
 
 function leesTab(): Tab {
-  return location.hash === '#termijnen' ? 'termijnen' : 'stukken'
+  if (location.hash === '#termijnen') return 'termijnen'
+  if (location.hash === '#dagvaarding') return 'dagvaarding'
+  return 'stukken'
 }
 
 export default function App() {
@@ -84,7 +87,7 @@ export default function App() {
   }, [])
 
   function kies(t: Tab) {
-    history.replaceState(null, '', t === 'termijnen' ? '#termijnen' : '#')
+    history.replaceState(null, '', t === 'stukken' ? '#' : `#${t}`)
     setTab(t)
   }
 
@@ -102,18 +105,19 @@ export default function App() {
             </svg>
             <span className="merk-tekst">
               <span className="merk-naam">De Rol</span>
-              <span className="merk-sub">Stukken en termijnen voor de rol</span>
+              <span className="merk-sub">Stukken, dagvaarding en termijnen</span>
             </span>
           </a>
           <nav className="schakelaar" aria-label="Onderdelen">
             <button aria-current={tab === 'stukken' ? 'page' : undefined} onClick={() => kies('stukken')}>Stukken<span className="breed"> controleren</span></button>
+            <button aria-current={tab === 'dagvaarding' ? 'page' : undefined} onClick={() => kies('dagvaarding')}>Dagvaarding</button>
             <button aria-current={tab === 'termijnen' ? 'page' : undefined} onClick={() => kies('termijnen')}>Termijnen</button>
           </nav>
           <ThemaKnop />
         </div>
       </header>
 
-      <main className="inhoud">{tab === 'stukken' ? <Stukken /> : <Termijnen />}</main>
+      <main className="inhoud">{tab === 'stukken' ? <Stukken /> : tab === 'dagvaarding' ? <Dagvaarding /> : <Termijnen />}</main>
 
       <footer className="voet">
         <Installeer />
@@ -126,7 +130,7 @@ export default function App() {
           <a href="https://www.rechtspraak.nl/binaries/_rts_1790839394209/content/assets/uit/lov/pr/lov-pr-civiele-dagvaardingszaken-rechtbanken-kanton-en-handel-2e-versie-1-juli-2026.pdf" target="_blank" rel="noreferrer">
             Landelijk procesreglement civiele dagvaardingszaken rechtbanken
           </a>
-          , tweede versie van 1 juli 2026, handelszaken. De controles zijn een hulpmiddel; de advocaat blijft verantwoordelijk voor wat wordt ingediend.
+          , tweede versie van 1 juli 2026, en het Wetboek van Burgerlijke Rechtsvordering. De controles zijn een hulpmiddel; de advocaat blijft verantwoordelijk voor wat wordt ingediend.
         </p>
       </footer>
     </div>
